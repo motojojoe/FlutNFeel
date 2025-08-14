@@ -22,34 +22,34 @@ class HomePage extends StatelessWidget {
 
   final List<Item> items = const [
     Item(
-      title: 'Notes Pro',
-      category: 'Productivity',
-      imageUrl: 'https://picsum.photos/id/2/600/300',
+      title: 'Music Player',
+      category: 'Entertainment',
+      imageUrl: 'https://picsum.photos/id/453/600/300',
     ),
     Item(
       title: 'Fitness Plus',
       category: 'Health & Fitness',
-      imageUrl: 'https://picsum.photos/id/2/600/300',
+      imageUrl: 'https://picsum.photos/id/1005/600/400', 
+    ),
+    Item(
+      title: 'Notes Pro',
+      category: 'Productivity',
+      imageUrl: 'https://picsum.photos/id/180/600/300',
     ),
     Item(
       title: 'Travel Buddy',
       category: 'Travel',
-      imageUrl: 'https://picsum.photos/id/2/600/300',
+      imageUrl: 'https://picsum.photos/id/1049/600/300', 
     ),
     Item(
       title: 'Weather App',
       category: 'Weather',
-      imageUrl: 'https://picsum.photos/id/2/600/300',
-    ),
-    Item(
-      title: 'Music Player',
-      category: 'Entertainment',
-      imageUrl: 'https://picsum.photos/id/2/600/300',
+      imageUrl: 'https://picsum.photos/id/1015/600/300', 
     ),
     Item(
       title: 'Recipe Book',
       category: 'Lifestyle',
-      imageUrl: 'https://picsum.photos/id/2/600/300',
+      imageUrl: 'https://picsum.photos/id/312/600/300', 
     ),
   ];
 
@@ -82,7 +82,7 @@ class HomePage extends StatelessWidget {
             itemBuilder: (context, index) {
               final item = items[index];
               return Padding(
-                padding: const EdgeInsets.only(bottom: 24),
+                padding: const EdgeInsets.all(0),
                 child: AppStoreCard(item: item),
               );
             },
