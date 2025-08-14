@@ -20,21 +20,36 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  final List<AppStoreItem> items = const [
-    AppStoreItem(
-      title: 'Notes Pro',
-      category: 'Productivity',
-      imageUrl: 'https://picsum.photos/600/300?1',
+  final List<Item> items = const [
+    Item(
+      title: 'Music Player',
+      category: 'Entertainment',
+      imageUrl: 'https://picsum.photos/id/453/600/300',
     ),
-    AppStoreItem(
+    Item(
       title: 'Fitness Plus',
       category: 'Health & Fitness',
-      imageUrl: 'https://picsum.photos/600/300?2',
+      imageUrl: 'https://picsum.photos/id/1005/600/400', 
     ),
-    AppStoreItem(
+    Item(
+      title: 'Notes Pro',
+      category: 'Productivity',
+      imageUrl: 'https://picsum.photos/id/180/600/300',
+    ),
+    Item(
       title: 'Travel Buddy',
       category: 'Travel',
-      imageUrl: 'https://picsum.photos/600/300?3',
+      imageUrl: 'https://picsum.photos/id/1049/600/300', 
+    ),
+    Item(
+      title: 'Weather App',
+      category: 'Weather',
+      imageUrl: 'https://picsum.photos/id/1015/600/300', 
+    ),
+    Item(
+      title: 'Recipe Book',
+      category: 'Lifestyle',
+      imageUrl: 'https://picsum.photos/id/312/600/300', 
     ),
   ];
 
@@ -67,7 +82,7 @@ class HomePage extends StatelessWidget {
             itemBuilder: (context, index) {
               final item = items[index];
               return Padding(
-                padding: const EdgeInsets.only(bottom: 24),
+                padding: EdgeInsets.zero,
                 child: AppStoreCard(item: item),
               );
             },
@@ -78,12 +93,12 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class AppStoreItem {
+class Item {
   final String title;
   final String category;
   final String imageUrl;
 
-  const AppStoreItem({
+  const Item({
     required this.title,
     required this.category,
     required this.imageUrl,
@@ -91,34 +106,37 @@ class AppStoreItem {
 }
 
 class AppStoreCard extends StatelessWidget {
-  final AppStoreItem item;
+  final Item item;
 
   const AppStoreCard({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: Image.network(
-            item.imageUrl,
-            height: 200,
-            width: double.infinity,
-            fit: BoxFit.cover,
+    return Container(
+      constraints: const BoxConstraints(minHeight: 300),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Image.network(
+              item.imageUrl,
+              height: 200,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          item.category.toUpperCase(),
-          style: Theme.of(context).textTheme.labelSmall,
-        ),
-        Text(
-          item.title,
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
-      ],
+          const SizedBox(height: 8),
+          Text(
+            item.category.toUpperCase(),
+            style: Theme.of(context).textTheme.labelSmall,
+          ),
+          Text(
+            item.title,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+        ],
+      ),
     );
   }
 }

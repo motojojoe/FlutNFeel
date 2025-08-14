@@ -6,8 +6,21 @@
 *.swp
 .buildlog/
 .history
+.DS_Store
+Thumbs.db
 
-
+# IDEs and editors
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+.metadata
 
 # Flutter repo-specific
 /bin/cache/
@@ -103,6 +116,10 @@ unlinked_spec.ds
 **/linux/flutter/generated_plugin_registrant.cc
 **/linux/flutter/generated_plugin_registrant.h
 **/linux/flutter/generated_plugins.cmake
+
+# Web
+**/web/.dart_tool/
+**/web/packages/
 
 # Coverage
 coverage/
