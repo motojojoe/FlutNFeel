@@ -11,20 +11,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutnfeel/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('App shows homepage with cached images', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify that the app bar title is shown
+    expect(find.text('Today'), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Verify that some of the item categories are shown
+    expect(find.text('ENTERTAINMENT'), findsOneWidget);
+    expect(find.text('HEALTH & FITNESS'), findsOneWidget);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify that item titles are shown
+    expect(find.text('Music Player'), findsOneWidget);
+    expect(find.text('Fitness Plus'), findsOneWidget);
   });
 }
