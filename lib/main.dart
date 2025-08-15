@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 void main() {
   runApp(const MyApp());
@@ -119,8 +120,8 @@ class AppStoreCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: Image.network(
-              item.imageUrl,
+            child: CachedNetworkImage(
+              imageUrl: item.imageUrl,
               height: 200,
               width: double.infinity,
               fit: BoxFit.cover,

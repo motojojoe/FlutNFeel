@@ -1,0 +1,6 @@
+source "https://rubygems.org"
+
+# CocoaPods
+gem "cocoapods", "~> 1.15"
+
+ruby "~> 3.4.0"
