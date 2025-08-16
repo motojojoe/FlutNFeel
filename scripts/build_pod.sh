@@ -46,5 +46,9 @@ fi
 
 echo
 echo "Done. Point your host app Podfile to:"
-echo "  pod 'Flutter', :podspec => File.join('<path-to-FlutNFeel>', 'build', 'ios-framework', 'Release', 'Flutter.podspec')"
+ls -la build/ios-framework/$MODE || true
+
+echo
+echo "Done. Point your host app Podfile to:"
+echo "  pod 'Flutter', :podspec => File.join('<path-to-FlutNFeel>', 'build', 'ios-framework', '$MODE', 'Flutter.podspec')"
 echo "  pod 'FlutNFeel', :path => '<path-to-FlutNFeel>'"
