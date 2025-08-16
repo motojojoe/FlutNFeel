@@ -32,7 +32,6 @@ flutter build ios-framework --output=./build/ios-framework --cocoapods ${DEBUG_F
 
 echo
 echo "Artifacts:"
-ls -la build/ios-framework || true
 if [ -d build/ios-framework ]; then
   ls -la build/ios-framework
 else
