@@ -102,7 +102,9 @@ Open `YourApp.xcworkspace` and build.
 
 ## Initialize Flutter in your app
 
-Minimal Swift example using a shared engine:
+### UIKit Implementation
+
+Minimal UIKit example using a shared engine:
 
 ```swift
 import UIKit
@@ -128,12 +130,15 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
+    title = "FlutNFeel Demo"
 
     let button = UIButton(type: .system)
     button.setTitle("Show Flutter", for: .normal)
+    button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
     button.addTarget(self, action: #selector(showFlutter), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(button)
+    
     NSLayoutConstraint.activate([
       button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
       button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
@@ -146,6 +151,86 @@ class ViewController: UIViewController {
     flutterVC.modalPresentationStyle = .fullScreen
     present(flutterVC, animated: true)
   }
+}
+```
+
+### SwiftUI Implementation
+
+For SwiftUI apps, you can integrate Flutter using a `UIViewControllerRepresentable`:
+
+```swift
+import SwiftUI
+import Flutter
+
+@main
+struct FlutNFeelApp: App {
+  let flutterEngine = FlutterEngine(name: "flutnfeel_engine")
+  
+  init() {
+    flutterEngine.run()
+    GeneratedPluginRegistrant.register(with: flutterEngine) // provided by FlutNFeel pod
+  }
+  
+  var body: some Scene {
+    WindowGroup {
+      ContentView()
+        .environmentObject(FlutterEngineWrapper(engine: flutterEngine))
+    }
+  }
+}
+
+class FlutterEngineWrapper: ObservableObject {
+  let engine: FlutterEngine
+  
+  init(engine: FlutterEngine) {
+    self.engine = engine
+  }
+}
+
+struct ContentView: View {
+  @EnvironmentObject var flutterEngine: FlutterEngineWrapper
+  @State private var isFlutterPresented = false
+  
+  var body: some View {
+    NavigationView {
+      VStack(spacing: 20) {
+        Text("FlutNFeel Demo")
+          .font(.largeTitle)
+          .fontWeight(.bold)
+        
+        Button("Show Flutter") {
+          isFlutterPresented = true
+        }
+        .font(.title2)
+        .foregroundColor(.white)
+        .padding()
+        .background(Color.blue)
+        .cornerRadius(10)
+      }
+      .navigationTitle("Home")
+    }
+    .fullScreenCover(isPresented: $isFlutterPresented) {
+      FlutterViewControllerWrapper(engine: flutterEngine.engine)
+    }
+  }
+}
+
+struct FlutterViewControllerWrapper: UIViewControllerRepresentable {
+  let engine: FlutterEngine
+  
+  func makeUIViewController(context: Context) -> FlutterViewController {
+    let flutterViewController = FlutterViewController(engine: engine, nibName: nil, bundle: nil)
+    return flutterViewController
+  }
+  
+  func updateUIViewController(_ uiViewController: FlutterViewController, context: Context) {
+    // No updates needed
+  }
+}
+
+#Preview {
+  ContentView()
+    .environmentObject(FlutterEngineWrapper(engine: FlutterEngine()))
 }
 ```
 
