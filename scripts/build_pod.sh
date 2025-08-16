@@ -33,7 +33,16 @@ flutter build ios-framework --output=./build/ios-framework --cocoapods ${DEBUG_F
 echo
 echo "Artifacts:"
 ls -la build/ios-framework || true
-ls -la build/ios-framework/Release || true
+if [ -d build/ios-framework ]; then
+  ls -la build/ios-framework
+else
+  echo "Directory build/ios-framework does not exist."
+fi
+if [ -d build/ios-framework/Release ]; then
+  ls -la build/ios-framework/Release
+else
+  echo "Directory build/ios-framework/Release does not exist."
+fi
 
 echo
 echo "Done. Point your host app Podfile to:"
