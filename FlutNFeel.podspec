@@ -17,7 +17,7 @@ the generated Flutter.podspec (see integration steps in README/COCOAPODS.md).
   s.source           = { :git => 'https://github.com/motojojoe/FlutNFeel.git', :tag => s.version.to_s }
 
   # Compiled frameworks built with: `flutter build ios-framework --cocoapods --no-debug --no-profile`.
-  s.vendored_frameworks = 'build/ios-framework/Release/*.xcframework'
+  s.vendored_frameworks = 'build/ios-framework/**/*.xcframework' 
 
   # Include GeneratedPluginRegistrant so consumers don't need to copy it into their app target.
   s.source_files = 'build/ios-framework/GeneratedPluginRegistrant.{h,m}'

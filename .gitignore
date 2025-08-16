@@ -53,10 +53,8 @@ analysis_benchmark.json
 .packages
 .pub-preload-cache/
 .pub/
-build/
+build/*
 !build/ios-framework/
-!build/ios-framework/**/*.xcframework
-!build/ios-framework/GeneratedPluginRegistrant.*
 flutter_*.png
 linked_*.ds
 unlinked.ds
