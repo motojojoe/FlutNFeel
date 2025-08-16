@@ -6,16 +6,16 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutnfeel/main.dart';
 
 void main() {
-  testWidgets('App shows homepage with cached images', (WidgetTester tester) async {
+  testWidgets('App shows homepage with header and content', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
 
-    // Verify that the app bar title is shown
-    expect(find.text('Today'), findsOneWidget);
+    // Verify that the header is shown
+    expect(find.text('FlutNFeel'), findsOneWidget);
+    expect(find.text('Search for apps...'), findsOneWidget);
 
     // Verify that some of the item categories are shown
     expect(find.text('ENTERTAINMENT'), findsOneWidget);
